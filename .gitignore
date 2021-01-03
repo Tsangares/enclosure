@@ -4,3 +4,5 @@ src/main/rust/pkg/
 src/main/rust/target/
 src/main/rust/Cargo.lock
 target/
+target
+target/*

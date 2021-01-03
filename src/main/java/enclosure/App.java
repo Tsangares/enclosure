@@ -13,7 +13,12 @@ public class App
     //Given a list of edges find all the polygons
     public static ArrayList<Polygon> getCircuits(ArrayList<Line2D.Float> edges){
 	Graph graph = new Graph(edges);
+	
 	return null;
+    }
+    public static ArrayList<Vertex> traverse(Vertex current, ArrayList<Vertex> visited){
+	if(visited.contains(current)) return null; //Been here before
+	
     }
 
     /*
