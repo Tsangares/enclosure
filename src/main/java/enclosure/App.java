@@ -12,9 +12,9 @@ public class App
 
     //Given a list of edges find all the polygons
     public static ArrayList<Polygon> getCircuits(ArrayList<Line2D.Float> edges){
+	Graph graph = new Graph(edges);
 	return null;
     }
-    
 
     /*
       The follwing are print statements to help visualize the edges.
