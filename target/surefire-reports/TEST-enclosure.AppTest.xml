@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="enclosure.AppTest" time="0.032" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="enclosure.AppTest" time="0.165" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk/lib"/>
-    <property name="sun.java.command" value="/home/wil/Desktop/enclosure/enclosure/target/surefire/surefirebooter14454519090981658964.jar /home/wil/Desktop/enclosure/enclosure/target/surefire 2021-01-02T17-32-12_325-jvmRun1 surefire11140908068228477420tmp surefire_017501676158942211077tmp"/>
+    <property name="sun.java.command" value="/home/wil/Desktop/enclosure/enclosure/target/surefire/surefirebooter17257848209330838029.jar /home/wil/Desktop/enclosure/enclosure/target/surefire 2021-01-02T23-27-47_262-jvmRun1 surefire15595565319189032021tmp surefire_05366823461202934088tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/wil/Desktop/enclosure/enclosure/target/test-classes:/home/wil/Desktop/enclosure/enclosure/target/classes:/home/wil/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/wil/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/wil/Desktop/enclosure/enclosure/target/surefire/surefirebooter14454519090981658964.jar"/>
+    <property name="surefire.real.class.path" value="/home/wil/Desktop/enclosure/enclosure/target/surefire/surefirebooter17257848209330838029.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.8+10"/>
     <property name="user.name" value="wil"/>
@@ -56,8 +56,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="multiple_connected_enclosures_with_false_edges" classname="enclosure.AppTest" time="0.005"/>
-  <testcase name="basic_enclosure" classname="enclosure.AppTest" time="0"/>
-  <testcase name="multiple_connected_enclosures" classname="enclosure.AppTest" time="0"/>
-  <testcase name="multiple_seperate_enclosures" classname="enclosure.AppTest" time="0"/>
+  <testcase name="multiple_connected_enclosures_with_false_edges" classname="enclosure.AppTest" time="0.003"/>
+  <testcase name="basic_enclosure" classname="enclosure.AppTest" time="0.077"/>
+  <testcase name="multiple_connected_enclosures" classname="enclosure.AppTest" time="0.034"/>
+  <testcase name="multiple_seperate_enclosures" classname="enclosure.AppTest" time="0.005"/>
 </testsuite>

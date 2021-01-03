@@ -1,14 +1,14 @@
 package enclosure;
 
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;  
 import org.junit.Test;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays; 
+import java.awt.Polygon;
 
-public class AppTest 
+public class EnclosureTest 
 {
 
     /* 
@@ -58,6 +58,8 @@ public class AppTest
     public void basic_enclosure()
     {
 	ArrayList<Line2D.Float> edges = getRect(0,0,3,3);
+	assertTrue("Inside Basic Box", Enclosure.trapped(edges,new Point2D.Float(1,1)));
+	assertFalse("Outside Basic Box", Enclosure.trapped(edges,new Point2D.Float(-1,1)));
     }
 
     //Two seperate boxes
@@ -66,6 +68,9 @@ public class AppTest
     {
 	ArrayList<Line2D.Float> edges = getRect(0,0,3,3);
 	edges.addAll(getRect(5,5,3,3));
+	assertTrue("Inside Basic Box", Enclosure.trapped(edges,new Point2D.Float(1,1)));
+	assertFalse("Outside Boxes", Enclosure.trapped(edges,new Point2D.Float(-1,1)));
+	assertTrue("Inside Distant Box", Enclosure.trapped(edges,new Point2D.Float(6,6)));
     }
 
     //Two connected boxes
@@ -76,6 +81,10 @@ public class AppTest
 	edges.addAll(getLine(3,3,6,3));
 	edges.addAll(getLine(6,3,6,0));
 	edges.addAll(getLine(6,0,3,0));
+	Enclosure.getCircuits(edges);
+	assertTrue("Inside Basic Box", Enclosure.trapped(edges,new Point2D.Float(1,1)));
+	assertFalse("Outside Boxes", Enclosure.trapped(edges,new Point2D.Float(-1,1)));
+	assertTrue("Inside Extra Box", Enclosure.trapped(edges,new Point2D.Float(5,1)));
     }
 
     //Two connected boxes, two sprawling lines, and one semi-disconnected box.
@@ -89,5 +98,9 @@ public class AppTest
 	edges.addAll(getLine(3,3,3,6));
 	edges.addAll(getLine(0,0,-3,0));
 	edges.addAll(getRect(3,5,4,4));
+	assertTrue("Inside Basic Box", Enclosure.trapped(edges,new Point2D.Float(1,1)));
+	assertFalse("Outside Boxes", Enclosure.trapped(edges,new Point2D.Float(-1,1)));
+	assertTrue("Inside Extra Box", Enclosure.trapped(edges,new Point2D.Float(5,1)));
+
     }
 }

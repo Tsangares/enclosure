@@ -6,7 +6,6 @@ import java.awt.Polygon;
 public class Graph
 {
     ArrayList<Vertex> vertices = new ArrayList<>();
-
     public Graph(ArrayList<Line2D.Float> edges){
 	for(Line2D.Float edge: edges){
 	    addEdge(edge);
@@ -27,8 +26,21 @@ public class Graph
 	alpha.addConnection(beta);
 	beta.addConnection(alpha);
     }
-
-    public final ArrayList<Vertex> getVertices(){
+    
+    public ArrayList<Vertex> getVertices(){
 	return vertices;
+    }
+    public int size(){
+	return vertices.size();
+    }
+    public void remove(ArrayList<Vertex> points){
+	for(Vertex vertex: points){
+	    if(vertices.contains(vertex)){
+		for(Vertex connected: vertex.connections){
+		    connected.connections.remove(vertex);
+		}
+		vertices.remove(vertex);
+	    }
+	}
     }
 }
