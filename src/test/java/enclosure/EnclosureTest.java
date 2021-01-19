@@ -103,4 +103,18 @@ public class EnclosureTest
 	assertTrue("Inside Extra Box", Enclosure.trapped(edges,new Point2D.Float(5,1)));
 
     }
+
+    @Test
+    public void boxes_test(){
+	ArrayList<Point2D.Float> points = new ArrayList<>();
+	for(int i = 0; i < 5; ++i){
+	    for(int j = 0; j < 5; ++j){
+		points.add(new Point2D.Float(i,j));
+	    }
+	}
+	System.out.println("we have "+points.size()+" points");
+	ArrayList<Line2D.Float> lines = Enclosure.parseBoxes(points);
+	System.out.println("we have "+lines.size()+" lines");
+	assertTrue("Inside MESH", Enclosure.trapped(lines,new Point2D.Float(1,1)));
+    }
 }

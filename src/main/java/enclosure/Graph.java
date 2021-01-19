@@ -10,6 +10,17 @@ public class Graph
 	for(Line2D.Float edge: edges){
 	    addEdge(edge);
 	}
+	//Delete all non circuits
+	ArrayList<Vertex> dead = new ArrayList<>();
+	for(Vertex vertex: vertices){
+	    if(vertex.size()<=1){
+		dead.add(vertex);
+	    }
+	}
+	for(Vertex vertex: dead){
+	    remove(vertex);
+	}
+	System.out.println("Removed all non-circuits. There are "+vertices.size());
     }
     public void addEdge(Line2D.Float edge){
 	Vertex alpha = new Vertex(edge.getP1());
@@ -32,6 +43,17 @@ public class Graph
     }
     public int size(){
 	return vertices.size();
+    }
+    public void remove(Vertex vertex){
+	if(vertices.contains(vertex)){
+	    for(Vertex connected: vertex.connections){
+		connected.connections.remove(vertex);
+		if(connected.size()<=1){
+		    remove(connected);
+		}
+	    }
+	    vertices.remove(vertex);
+	}
     }
     public void remove(ArrayList<Vertex> points){
 	for(Vertex vertex: points){

@@ -15,14 +15,9 @@ public class Vertex
     }
 
     public boolean addConnection(Vertex point){
-	//Restricted to only distances of 1
-	if(point.location.distance(location)==1){
-	    if(contains(point)) return false; //Already got this point
-	    connections.add(point);
-	    return true;
-	}
-	System.out.println("Malformed edge (too long), must be distances of 1.");
-	return false;
+	if(contains(point)) return false; //Already got this point
+	connections.add(point);
+	return true;
     }
 
     public final int size(){

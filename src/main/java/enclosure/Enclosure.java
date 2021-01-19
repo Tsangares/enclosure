@@ -5,13 +5,21 @@ import java.util.ArrayList;
 import java.util.Arrays; 
 import java.awt.Polygon;
 import java.awt.geom.Area;
+import java.util.HashMap;
+import java.util.Map;
 public class Enclosure 
 {
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
     }
-
+    public static boolean ping(){
+	System.out.println("Pong");
+	return true;
+    }
+    public static boolean isTrapped(ArrayList<Point2D.Float> points, Point2D.Float point){
+	return trapped(parseBoxes(points),point);
+    }
     public static boolean trapped(ArrayList<Line2D.Float> edges, Point2D.Float point){
 	ArrayList<Polygon> polygons = getCircuits(edges);
 	for(Polygon polygon: polygons){
@@ -19,6 +27,43 @@ public class Enclosure
 	}
 	return false;
     }
+
+    //Given a bunch of points represending unit boxes, find edges.
+    public static ArrayList<Line2D.Float> parseBoxes(ArrayList<Point2D.Float> points){
+	ArrayList<Line2D.Float> edges = new ArrayList<>();
+	Map<Point2D.Float, ArrayList<Point2D.Float>> map = new HashMap<>();
+	//Passthrough
+	System.out.println("passthrough");
+	for(Point2D.Float point: points){
+	    map.put(point, new ArrayList<Point2D.Float>());
+	}
+	System.out.println("Binning");
+	for(Point2D.Float point: points){
+	    float x = point.x;
+	    float y = point.y;
+	    for(int i=-1; i<=1; ++i){
+		for(int j=-1; j<=1; ++j){
+		    if(i==0&&j==0) continue;
+		    Point2D.Float adjacent = new Point2D.Float(x+i,y+j);
+		    ArrayList<Point2D.Float> connected = map.get(adjacent);
+		    if(connected!=null){
+			connected.add(point);
+		    }
+		}
+	    }
+	}
+	System.out.println("Connecting");
+	for(Point2D.Float point: points){
+	    ArrayList<Point2D.Float> connected = map.get(point);
+	    for(Point2D.Float adjacent: connected){
+		edges.add(new Line2D.Float(point,adjacent));
+	    }
+	}
+	System.out.println("Completed edge building");
+	System.out.println("There are "+edges.size()+" edges from "+points.size()+" points.");
+	return edges;
+    }
+    
     //Given a list of edges find all the polygons
     public static ArrayList<Polygon> getCircuits(ArrayList<Line2D.Float> edges){
 	Graph graph = new Graph(edges);
@@ -34,6 +79,7 @@ public class Enclosure
 	    }else{
 		graph.remove(getConnected(start));
 	    }
+	    System.out.println("Graph size is, "+graph.size()+" paths found are "+allPaths.size());
 	}
 	ArrayList<Polygon> polygons = getPolygons(allPaths);
 	ArrayList<Polygon> uniquePolygons = new ArrayList<>();
@@ -45,6 +91,7 @@ public class Enclosure
 	    }
 	    if (unique) uniquePolygons.add(polygon);
 	}
+	System.out.println("From "+polygons.size()+" to "+uniquePolygons.size()+" uniques.");
 	return uniquePolygons;
     }
     public static ArrayList<Polygon> getPolygons(ArrayList<ArrayList<Vertex>> paths){
